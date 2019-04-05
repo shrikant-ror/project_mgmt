@@ -57,4 +57,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'haml'
+gem 'pry', '~> 0.12.2'
 gem "twitter-bootstrap-rails"
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
+gem "cancan"
+gem 'jquery-rails'

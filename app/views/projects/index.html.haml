@@ -1,0 +1,23 @@
+= link_to 'New Project', new_project_path, class: "btn btn-success"
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{:scope => "col"} Name
+      %th{:scope => "col"} Description
+      %th{:scope => "col"} Client Name
+      %th{:scope => "col"} Technology Stack
+      %th{:scope => "col"} Project Type
+      %th{:scope => "col"} Actions
+  %tbody
+    - @projects.each do |project|
+      %tr
+        %td= project.name
+        %td= project.description
+        %td= project.client_name
+        %td= project.technology_stack
+        %td= project.project_type
+        %td
+          %span= link_to 'Edit Project', edit_project_path(project.id), class: "btn btn-primary"
+          %span= link_to 'Manage Todos', project_todos_path(project.id), class: "btn btn-primary"
+          %span= link_to 'Manage Users', projects_users_path(project_id: project.id), class: "btn btn-primary"

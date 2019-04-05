@@ -1,0 +1,36 @@
+= form_for @project do |f|
+  - if @project.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+      %ul
+        - @project.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    .col-md-7
+      %label Project Name
+      = f.text_field :name, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Project Description
+      = f.text_field :description, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Client Name
+      = f.text_field :client_name, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Technology Stack
+      = f.text_field :technology_stack, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Project Type
+      = f.text_field :project_type, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      = f.submit 'Save', class: 'btn btn-primary'
+      = link_to 'Back', projects_path

@@ -1,0 +1,23 @@
+%h3= "Users List for project: #{@project.name}"
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{:scope => "col"} First Name
+      %th{:scope => "col"} Last Name
+      %th{:scope => "col"} Email Address
+  %tbody
+    - @project.users.each do |user|
+      %tr
+        %td= user.first_name
+        %td= user.last_name
+        %td= user.email
+
+%p
+  %a.btn.btn-primary{"aria-controls" => "collapseExample", "aria-expanded" => "false", "data-toggle" => "collapse", :href => "#collapseExample", :role => "button"}
+    Add User To Project
+#collapseExample.collapse
+  .card.card-body
+    = form_for ProjectsUser.new do |f|
+      = f.hidden_field :project_id, value: @project.id
+      = f.collection_select :user_id, User.developers.order(:email),:id,:email, include_blank: false, class: 'form-control'
+      = f.submit 'Save', class: 'btn btn-secondary btn-sm'

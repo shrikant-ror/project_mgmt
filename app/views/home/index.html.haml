@@ -1,2 +1,6 @@
 %h2 Home page
-= link_to('Login', new_user_session_path)
+= link_to 'Login', new_user_session_path
+
+= link_to 'New Project', new_project_path
+
+= link_to 'Logout', destroy_user_session_path, method: :delete

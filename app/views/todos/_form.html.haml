@@ -1,0 +1,41 @@
+= form_for([@todo.project, @todo]) do |f|
+  - if @todo.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@todo.errors.count, "error")} prohibited this todo from being saved:"
+      %ul
+        - @todo.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    .col-md-7
+      %label Task Name
+      = f.text_field :task, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Taks Description
+      = f.text_field :description, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Acceptance Criteria
+      = f.text_field :acceptance_criteria, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Priority
+      = f.collection_select(:priority, [ "High", "Medium", "Low" ], :to_s, :to_s)
+
+  .form-group
+    .col-md-7
+      %label Assigne
+      = f.collection_select :user_id, @todo.project.users.order(:email),:id,:email, include_blank: false, class: 'form-control'
+
+  .form-group
+    .col-md-7
+      %label Task Status
+      = f.collection_select(:status, [ "New", "In Progress", "Test", "Done" ], :to_s, :to_s)
+
+  .form-group
+    .col-md-7
+      = f.submit 'Save', class: 'btn btn-primary'
+      = link_to 'Back', projects_path

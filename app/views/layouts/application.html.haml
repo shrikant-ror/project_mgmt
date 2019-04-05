@@ -8,4 +8,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    %nav.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark
+      %a.navbar-brand{:href => "#"} Project Management Demo
+
+    %main.container{:role => "main"}
+      .container-fluid
+        = yield

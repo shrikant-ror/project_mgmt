@@ -1,0 +1,19 @@
+= link_to 'New Todo', new_project_todo_path(params[:project_id])
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th{:scope => "col"} Task Name
+      %th{:scope => "col"} Status
+      %th{:scope => "col"} Priority
+      %th{:scope => "col"} Assigne Name
+      %th{:scope => "col"} Actions
+  %tbody
+    - @todos.each do |todo|
+      %tr
+        %td= todo.task
+        %td= todo.status
+        %td= todo.priority
+        %td= todo.user.email
+        %td
+          %span= link_to 'Edit Todo', edit_project_todo_path(todo.project, todo)

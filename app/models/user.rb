@@ -3,5 +3,19 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_and_belongs_to_many :projects
+  has_many :projects_users 
+  has_many :projects, through: :projects_users
+  has_many :todos
+
+  scope :admin, (lambda do
+    where(admin: true)
+  end)
+
+  scope :developers, (lambda do
+    where(admin: false)
+  end)
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
